@@ -22,9 +22,14 @@ export class AdminRepository {
         return newUser;
     }
 
-    async deleteUser(id){
+    async deleteUser(id: number){
         const result = await db(usersTableName).del().where({id,}).returning("id");
         return result;
+    }
+
+    // role section
+    async setRole(){
+
     }
 
     // department section
@@ -42,4 +47,10 @@ export class AdminRepository {
             ]).returning('*');
         return newDepartment;
     }
+
+    async setDepartment(){
+
+    }
+
+
 }

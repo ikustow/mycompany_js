@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import departmentRouter from "./presentaion-layer/routes/department.route";
+import adminRouter from "./presentaion-layer/routes/admin.route";
+import employeeRouter from "./presentaion-layer/routes/employee.route";
 
 
 dotenv.config();
@@ -8,7 +9,8 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 8000;
 
-app.use('/api',departmentRouter)
+app.use('/api',adminRouter)
+app.use('/api',employeeRouter)
 
 app.get('/', (req: Request, res: Response) => {
     res.send('TypeScript Server');
