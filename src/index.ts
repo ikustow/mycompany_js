@@ -1,13 +1,17 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
+import departmentRouter from "./presentaion-layer/routes/department.route";
+
 
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 8000;
+
+app.use('/api',departmentRouter)
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Express + TypeScript Server');
+    res.send('TypeScript Server');
 });
 
 app.listen(port, () => {

@@ -1,9 +1,7 @@
-class Department{
-    id: string;
-    description: string;
 
-    constructor(id: string, description: string) {
-        this.id = id;
-        this.description= description;
-    }
+export class Department {
+
+    id: number;
+    description: string;
+    code: string;
 }

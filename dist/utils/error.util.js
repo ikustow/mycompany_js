@@ -6,3 +6,4 @@ const codes = {
     "DATA_BASE_ERROR": 405
 };
 exports.default = codes;
+//# sourceMappingURL=error.util.js.map
