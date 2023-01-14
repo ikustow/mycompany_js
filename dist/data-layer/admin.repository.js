@@ -14,35 +14,55 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdminRepository = void 0;
 const db_1 = __importDefault(require("./db"));
+const departmentTableName = process.env.DEPARTMENT_TABEL;
+const usersTableName = process.env.USER_TABEL || "users";
 class AdminRepository {
     getUsers() {
         return __awaiter(this, void 0, void 0, function* () {
+            const users = yield (0, db_1.default)(usersTableName).select();
+            return users;
         });
     }
-    addUser() {
+    addUser(user) {
         return __awaiter(this, void 0, void 0, function* () {
+            const newUser = yield (0, db_1.default)(usersTableName).insert([
+                {
+                    email: user.email,
+                    password: user.password
+                },
+            ]).returning('*');
+            return newUser;
         });
     }
-    deleteUser() {
+    deleteUser(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield (0, db_1.default)(usersTableName).del().where({ id, }).returning("id");
+            return result;
+        });
+    }
+    setRole() {
         return __awaiter(this, void 0, void 0, function* () {
         });
     }
     getDeparts() {
         return __awaiter(this, void 0, void 0, function* () {
-            const departments = yield (0, db_1.default)('department').select();
+            const departments = yield (0, db_1.default)(departmentTableName).select();
             return departments;
         });
     }
-    addDepartment() {
+    addDepartment(department) {
         return __awaiter(this, void 0, void 0, function* () {
-            const departments = yield (0, db_1.default)('department').insert([
+            const newDepartment = yield (0, db_1.default)(departmentTableName).insert([
                 {
-                    code: '000001',
-                    description: 'main'
+                    code: department.code,
+                    description: department.description
                 },
-            ]);
-            console.log(departments);
-            return departments;
+            ]).returning('*');
+            return newDepartment;
+        });
+    }
+    setDepartment() {
+        return __awaiter(this, void 0, void 0, function* () {
         });
     }
 }

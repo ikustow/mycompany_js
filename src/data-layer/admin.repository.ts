@@ -3,7 +3,7 @@ import {User} from "../domain-layer/entities/user.entity";
 import db from "./db";
 
 const departmentTableName: string = process.env.DEPARTMENT_TABEL;
-const usersTableName: string = process.env.USER_TABEL;
+const usersTableName: string = process.env.USER_TABEL || "users";
 
 export class AdminRepository {
     //user section
