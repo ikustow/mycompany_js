@@ -22,4 +22,10 @@ export class EmployeeController {
         return actionResult;
     }
 
+    async getInfoById(id){
+        const employeeUseCase: EmployeeUseCase = new EmployeeUseCase();
+        const infoResult = employeeUseCase.getInfoById(id);
+        return infoResult;
+    }
+
 }

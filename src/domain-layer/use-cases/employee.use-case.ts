@@ -21,4 +21,10 @@ export class EmployeeUseCase {
         return actionResult;
     }
 
+    async getInfoById(id: number){
+        const employeeRepository:EmployeeRepository = new EmployeeRepository();
+        const infoResult = await  employeeRepository.getInfoById(id);
+        return infoResult;
+    }
+
 }
